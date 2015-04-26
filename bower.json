@@ -1,7 +1,7 @@
 {
   "name": "mat-divider",
   "license": "BSD-3-Clause",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "This element is used to display a material divider.",
   "homepage": "http://www.expandjs.com/elements/mat-divider",
   "authors": [
