@@ -7,9 +7,42 @@ The complete set of contributors may be found at https://expandjs.github.io/CONT
 -->
 
 <!--
-This element is used to display a material divider.
+An element used to display a [Material Design divider](http://www.google.com/design/spec/components/dividers.html#dividers-usage).
 
-It can be used in conjunction with mat-menu.
+By default the divider will act similarly to an `<hr/>`.
+
+```html
+<mat-option label="First option"></mat-option>
+<mat-divider></mat-divider>
+<mat-option label="Second option"></mat-option>
+```
+
+It can also be left intended, accordingly to [Material Design specifications](http://www.google.com/design/spec/components/dividers.html#dividers-types-of-dividers).
+
+```html
+<mat-divider inset></mat-divider>
+```
+
+If you want to make the divider part of a container, aligned at it's top or bottom,
+you can use either `cap` or `baseline`.
+
+```html
+<mat-paper z="2">
+
+    <div class="header" style="position: relative">
+        <h2>Title</h2>
+        <mat-divider baseline></mat-divider>
+    </div>
+
+    <mat-content class="body">...</mat-content>
+
+    <div class="actions" style="position: relative">
+        <mat-divider cap></mat-divider>
+        <mat-button label="Confirm"></mat-button>
+    </div>
+
+</mat-paper>
+```
 
 @element mat-divider
 @description A custom element used to display a Material Design divider
@@ -19,11 +52,11 @@ It can be used in conjunction with mat-menu.
 @demo http://expandjs.com/demo/mat-divider
 
 @dependency polymer Polymer/polymer#^1.0.0
-@dependency expandjs ExpandJS/expandjs#0.9.4
-@dependency mat-ink ExpandJS/mat-ink#0.9.4
+@dependency expandjs ExpandJS/expandjs#0.9.5
+@dependency mat-ink ExpandJS/mat-ink#0.9.5
 
-@devDependency mat-demo ExpandJS/mat-demo#0.9.4
-@devDependency mat-option ExpandJS/mat-option#0.9.4
+@devDependency mat-demo ExpandJS/mat-demo#0.9.5
+@devDependency mat-option ExpandJS/mat-option#0.9.5
 -->
 
 <link rel="import" href="../polymer/polymer.html">
