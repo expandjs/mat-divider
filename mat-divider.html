@@ -66,42 +66,44 @@ you can use either `cap` or `baseline`.
 
 <dom-module id="mat-divider">
 
-    <style>
-        :host {
-            display: block;
-            margin: 7px 0 8px 0;
-            overflow: hidden;
-            transition: margin 0.33s cubic-bezier(0.55, 0, 0.01, 1);
-            will-change: margin;
-        }
-
-        :host([baseline]),
-        :host([cap]) {
-            left: 0;
-            margin: 0;
-            position: absolute;
-            right: 0;
-        }
-
-        :host([baseline]) {
-            bottom: 0;
-        }
-
-        :host([cap]) {
-            top: 0;
-        }
-
-        :host #matDividerWrapper {
-            border-top: 1px solid currentColor;
-        }
-
-        :host([inset]) #matDividerWrapper {
-            margin-left: 72px;
-        }
-    </style>
-
     <template>
+
+        <style>
+            :host {
+                display: block;
+                margin: 7px 0 8px 0;
+                overflow: hidden;
+                transition: margin 0.33s cubic-bezier(0.55, 0, 0.01, 1);
+                will-change: margin;
+            }
+
+            :host([baseline]),
+            :host([cap]) {
+                left: 0;
+                margin: 0;
+                position: absolute;
+                right: 0;
+            }
+
+            :host([baseline]) {
+                bottom: 0;
+            }
+
+            :host([cap]) {
+                top: 0;
+            }
+
+            :host #matDividerWrapper {
+                border-top: 1px solid currentColor;
+            }
+
+            :host([inset]) #matDividerWrapper {
+                margin-left: 72px;
+            }
+        </style>
+
         <mat-ink id="matDividerWrapper" opacity="divider"></mat-ink>
+
     </template>
 
     <script>
