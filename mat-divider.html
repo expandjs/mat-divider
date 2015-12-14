@@ -7,7 +7,7 @@ The complete set of contributors may be found at https://expandjs.github.io/CONT
 -->
 
 <!--
-An element used to display a [Material Design divider](http://www.google.com/design/spec/components/dividers.html#dividers-usage).
+A custom element used to display a [Material Design divider](http://www.google.com/design/spec/components/dividers.html#dividers-usage).
 
 By default, the divider will act similarly to an `<hr/>`.
 
@@ -17,92 +17,70 @@ By default, the divider will act similarly to an `<hr/>`.
 <mat-option label="Second option"></mat-option>
 ```
 
-It can also be left intended, accordingly to [Material Design specifications](http://www.google.com/design/spec/components/dividers.html#dividers-types-of-dividers).
-
-```html
-<mat-divider inset></mat-divider>
-```
-
 If you want to make the divider part of a container, aligned at it's top or bottom,
 you can use either `cap` or `baseline`.
 
 ```html
-<mat-paper z="2">
-
-    <div class="header" style="position: relative">
-        <h2>Title</h2>
-        <mat-divider baseline></mat-divider>
-    </div>
-
-    <mat-content class="body">...</mat-content>
-
-    <div class="actions" style="position: relative">
-        <mat-divider cap></mat-divider>
-        <mat-button label="Confirm"></mat-button>
-    </div>
-
-</mat-paper>
+<mat-divider cap></mat-divider>
+<mat-divider baseline></mat-divider>
 ```
 
 @element mat-divider
 @description A custom element used to display a Material Design divider
-@keywords material design, material divider, web app, html5, expandjs, web-components
+@keywords material design, material divider, expandjs, web app, custom elements, web-components
 @group contents
+@hot
+
 @homepage http://expandjs.com/elements/mat-divider
 @repository https://github.com/ExpandJS/mat-divider
-@demo http://expandjs.com/demo/mat-divider
 
-@dependency polymer Polymer/polymer#^1.1.0
-@dependency expandjs ExpandJS/expandjs#0.9.11
-@dependency mat-ink ExpandJS/mat-ink#0.9.11
+@behavior mat-ink-behavior /bower_components/mat-ink/mat-ink-behavior.html
 
-@devDependency mat-demo ExpandJS/mat-demo#0.9.11
-@devDependency mat-option ExpandJS/mat-option#0.9.11
+@dependency polymer Polymer/polymer#^1.2.0
+@dependency expandjs ExpandJS/expandjs#0.10.0
+@dependency mat-ink ExpandJS/mat-ink#0.10.0
 -->
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../expandjs/expandjs.html">
-<link rel="import" href="../mat-ink/mat-ink.html">
+<link rel="import" href="../mat-ink/mat-ink-behavior.html">
+<link rel="import" href="../mat-ink/mat-ink-styles.html">
 
 <dom-module id="mat-divider">
 
-    <template>
+    <template strip-whitespace>
+
+        <style include="mat-ink-styles"></style>
 
         <style>
             :host {
                 display: block;
-                margin: 7px 0 8px 0;
                 overflow: hidden;
-                transition: margin 0.33s cubic-bezier(0.55, 0, 0.01, 1);
-                will-change: margin;
-            }
-
-            :host([baseline]),
-            :host([cap]) {
-                left: 0;
-                margin: 0;
-                position: absolute;
-                right: 0;
+                padding: 7px 0 8px 0;
             }
 
             :host([baseline]) {
                 bottom: 0;
+                left: 0;
+                padding: 0;
+                position: absolute;
+                right: 0;
             }
 
             :host([cap]) {
+                left: 0;
+                padding: 0;
+                position: absolute;
+                right: 0;
                 top: 0;
             }
 
-            :host #matDividerWrapper {
+            :host .line {
                 border-top: 1px solid currentColor;
-            }
-
-            :host([inset]) #matDividerWrapper {
-                margin-left: 72px;
             }
         </style>
 
-        <mat-ink id="matDividerWrapper" opacity="divider"></mat-ink>
+        <div class="line"></div>
 
     </template>
 
@@ -111,6 +89,11 @@ you can use either `cap` or `baseline`.
 
             // ELEMENT
             is: 'mat-divider',
+
+            // BEHAVIORS
+            behaviors: [
+                Polymer.MatInkBehavior
+            ],
 
             /*********************************************************************/
 
@@ -146,16 +129,16 @@ you can use either `cap` or `baseline`.
                 },
 
                 /**
-                 * If set to true, the element is indented.
+                 * The divider's opacity.
                  *
-                 * @attribute inset
-                 * @type boolean
-                 * @default false
+                 * @attribute opacity
+                 * @type string
+                 * @default "divider"
                  */
-                inset: {
+                opacity: {
                     reflectToAttribute: true,
-                    type: Boolean,
-                    value: false
+                    type: String,
+                    value: 'divider'
                 }
             },
 
@@ -169,6 +152,15 @@ you can use either `cap` or `baseline`.
             // OBSERVER
             _capChanged: function (post) {
                 this.baseline = this.baseline && !post;
+            },
+
+            /*********************************************************************/
+
+            // LISTENER
+            created: function () {
+
+                // Classifying
+                this.classList.add('divider');
             }
         });
     </script>
